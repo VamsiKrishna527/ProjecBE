@@ -139,7 +139,7 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.14, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -147,7 +147,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.14, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

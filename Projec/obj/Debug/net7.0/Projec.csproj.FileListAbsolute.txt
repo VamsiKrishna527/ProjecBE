@@ -85,3 +85,6 @@ C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.Extens
 C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\vn695106\source\repos\ProjecBE\Projec\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll

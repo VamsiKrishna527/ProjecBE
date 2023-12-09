@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c => {
         {
             Email = "vamsi@csun.edu",
             Name = "Vamsi",
-            Url = new("https://github.com/VamsiKrishna527/ProjecBE")
+            Url = new("https://canvas.csun.edu/courses/128137")
         },
         Description = "APIs for Movies and Directors",
         Title = "Movies and Directors API",
@@ -54,8 +54,6 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddDbContext<MoviesandDirectorsContext>(optionsBuilder =>
     optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-WebApplication app = builder.Build();
-
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<MoviesandDirectorsContext>();
 
@@ -83,6 +81,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<JwtHandler>();
 
+WebApplication app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -93,6 +93,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
