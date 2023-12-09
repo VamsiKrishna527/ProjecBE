@@ -17,6 +17,6 @@ namespace Projec.Dtos
 
         public decimal? Collections { get; set; }
 
-        public int? DirectorId { get; set; }
+        /*public int? DirectorId { get; set; }*/
     }
 }

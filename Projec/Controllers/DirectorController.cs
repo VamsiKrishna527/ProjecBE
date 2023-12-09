@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.Metrics;
 using Microsoft.EntityFrameworkCore;
 using Projec.Dtos;
 using Microsoft.AspNetCore.Authorization;
@@ -94,7 +93,7 @@ namespace Projec.Controllers
 
         // POST api/<DirecController>
         [HttpPost("{directorId}/movies")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddMovieToDirector(int directorId, [FromBody] MovieDto newMovieDto)
         {
             Director director = await _db.Directors.Include(d => d.Movies).FirstOrDefaultAsync(d => d.DirectorId == directorId);
@@ -123,9 +122,11 @@ namespace Projec.Controllers
             {
                 MovieId = newMovieDto.MovieId,
                 Title = newMovieDto.Title,
+                Description = newMovieDto.Description,
                 ReleaseDate = newMovieDto.ReleaseDate,
-                Budget = newMovieDto.Budget
-                
+                Budget = newMovieDto.Budget,
+                Genre = newMovieDto.Genre,
+                Collections = newMovieDto.Collections
             };
 
             // Add the new movie to the director's list of movies
