@@ -54,7 +54,7 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddDbContext<MoviesandDirectorsContext>(optionsBuilder =>
     optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<MovieUser, IdentityRole>()
     .AddEntityFrameworkStores<MoviesandDirectorsContext>();
 
 builder.Services.AddAuthentication(options =>
@@ -81,9 +81,10 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<JwtHandler>();
 
+
+
 WebApplication app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

@@ -7,9 +7,9 @@ namespace Projec.Controllers
     public class UserController : ControllerBase
     {
         private readonly MoviesandDirectorsContext _db;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<MovieUser> _userManager;
 
-        public UserController(MoviesandDirectorsContext db, UserManager<User> userManager)
+        public UserController(MoviesandDirectorsContext db, UserManager<MovieUser> userManager)
         {
             _db = db;
             _userManager = userManager;
@@ -19,7 +19,7 @@ namespace Projec.Controllers
         public async Task<IActionResult> ImportUsersAsync()
         {
             (string name, string email) = ("user", "user@gmail.com");
-            User user = new()
+            MovieUser user = new()
             {
                 UserName = name,
                 Email = email,

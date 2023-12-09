@@ -74,7 +74,11 @@ namespace Projec.Controllers
             {
                 MovieId = m.MovieId,
                 Title = m.Title,
-                ReleaseDate = m.ReleaseDate
+                Description = m.Description,
+                ReleaseDate = m.ReleaseDate,
+                Budget = m.Budget,
+                Genre = m.Genre,
+                Collections = m.Collections
             }).ToList();
 
             DirectorDto directorDto = new DirectorDto

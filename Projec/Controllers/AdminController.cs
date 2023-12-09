@@ -11,10 +11,10 @@ namespace Projec.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<MovieUser> _userManager;
         private readonly JwtHandler _jwtHandler;
 
-        public AdminController(UserManager<User> userManager, JwtHandler jwtHandler)
+        public AdminController(UserManager<MovieUser> userManager, JwtHandler jwtHandler)
         {
             _userManager = userManager;
             _jwtHandler = jwtHandler;
@@ -23,7 +23,7 @@ namespace Projec.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
-            User? user = await _userManager.FindByNameAsync(loginRequest.UserName);
+            MovieUser? user = await _userManager.FindByNameAsync(loginRequest.UserName);
             if (user == null)
             {
                 return Unauthorized("Invalid User Name");

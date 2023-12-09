@@ -10,14 +10,14 @@ namespace Projec;
 public class JwtHandler
 {
     private readonly IConfiguration _configuration;
-    private readonly UserManager<User> _userManager;
-    public JwtHandler(IConfiguration configuration, UserManager<User> userManager)
+    private readonly UserManager<MovieUser> _userManager;
+    public JwtHandler(IConfiguration configuration, UserManager<MovieUser> userManager)
     {
         _configuration = configuration;
         _userManager = userManager;
     }
 
-    public async Task<JwtSecurityToken> GetTokenAsync(User user) =>
+    public async Task<JwtSecurityToken> GetTokenAsync(MovieUser user) =>
         new(
             issuer: _configuration["JwtSettings:Issuer"],
             audience: _configuration["JwtSettings:Audience"],
@@ -32,7 +32,7 @@ public class JwtHandler
         return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
     }
 
-    private async Task<List<Claim>> GetClaimsAsync(User user)
+    private async Task<List<Claim>> GetClaimsAsync(MovieUser user)
     {
         List<Claim> claims = new()
         {

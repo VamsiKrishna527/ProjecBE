@@ -88,6 +88,23 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.12": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.12",
+          "Microsoft.Extensions.Identity.Stores": "7.0.12"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.12": {
         "type": "package",
         "dependencies": {
@@ -450,6 +467,24 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Identity.Stores/7.0.12": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Identity.Core": "7.0.12",
+          "Microsoft.Extensions.Logging": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Identity.Stores.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Identity.Stores.dll": {
             "related": ".xml"
           }
         }
@@ -1266,6 +1301,21 @@
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/7.0.12": {
+      "sha512": "nGd88OCX4pvMeWdwigTUarFlaQtl+dr3vRawiemvVjuvJlrdal+Dr9Qbi+l6VZX9i1myDQW/dXA1zrMTB1o0Ow==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/7.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
+        "lib/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
+        "microsoft.aspnetcore.identity.entityframeworkcore.7.0.12.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.OpenApi/7.0.12": {
       "sha512": "KWfmBcvglieWin4srGSPiREh8/8+qCJpME9MPbsN2OVOwKkMXKta2K82Xk0BcZrZCk9tftMBO6qYfJgz0goQpg==",
       "type": "package",
@@ -1779,6 +1829,25 @@
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
         "microsoft.extensions.identity.core.8.0.0.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Identity.Stores/7.0.12": {
+      "sha512": "+9Qydkst50JAbeXfkK+A4pu6apPYuoD8OuCuGQ/aPYrRNlNFRaxZNIQuoatOnrr9tumbbvGFWH0reaKls4H8nA==",
+      "type": "package",
+      "path": "microsoft.extensions.identity.stores/7.0.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/net462/Microsoft.Extensions.Identity.Stores.xml",
+        "lib/net7.0/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/net7.0/Microsoft.Extensions.Identity.Stores.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
+        "microsoft.extensions.identity.stores.7.0.12.nupkg.sha512",
+        "microsoft.extensions.identity.stores.nuspec"
       ]
     },
     "Microsoft.Extensions.Logging/8.0.0": {
@@ -3230,6 +3299,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.12",
       "Microsoft.AspNetCore.OpenApi >= 7.0.12",
       "Microsoft.EntityFrameworkCore >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
@@ -3278,6 +3348,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.12, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.12, )"

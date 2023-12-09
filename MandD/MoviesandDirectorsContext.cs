@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace MandD;
 
-public partial class MoviesandDirectorsContext : DbContext
+public partial class MoviesandDirectorsContext : IdentityDbContext<MovieUser>
 {
     public MoviesandDirectorsContext()
     {
@@ -17,15 +19,28 @@ public partial class MoviesandDirectorsContext : DbContext
 
     public virtual DbSet<Director> Directors { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    //public virtual DbSet<MovieUser> MovieUsers { get; set; }
     public virtual DbSet<Movie> Movies { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=MoviesandDirectors;Integrated Security=true");
+*/
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (optionsBuilder.IsConfigured)
+        {
+            return;
+        }
+        IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+        IConfiguration configuration = builder.Build();
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Director>(entity =>
         {
             entity.HasKey(e => e.DirectorId).HasName("PK__Director__26C69E464D3B1115");
