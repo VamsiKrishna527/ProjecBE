@@ -2,6 +2,6 @@
 
 namespace MandD;
 
-public class MovieUser:IdentityUser
+public class MovieUser : IdentityUser
 {
 }

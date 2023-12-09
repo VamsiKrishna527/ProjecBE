@@ -32,7 +32,7 @@ public partial class Movie
     [ForeignKey("DirectorId")]
     public int? DirectorId { get; set; }
 
-    
+
     [InverseProperty("Movies")]
     public virtual Director? Director { get; set; }
 }

@@ -51,7 +51,8 @@ namespace Projec.Controllers
             {
                 DirectorId = d.DirectorId,
                 Name = d.Name,
-                Movies = d.Movies.Select(m => new MovieDto { Title = m.Title }).ToList()
+                //Movies = d.Movies.Select(m => new MovieDto { Title = m.Title }).ToList()
+                Movieslist = d.Movies.Select(m => m.Title).ToList()
             }).ToList();
 
             return Ok(directorDtos);

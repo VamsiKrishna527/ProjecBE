@@ -15,7 +15,7 @@ namespace Projec.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost("Authenticate")]
+        [HttpPost("Users")]
         public async Task<IActionResult> ImportUsersAsync()
         {
             (string name, string email) = ("user", "user@gmail.com");

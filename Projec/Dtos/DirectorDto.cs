@@ -15,5 +15,7 @@ namespace Projec.Dtos
         public string Email { get; set; }
 
         public  List<MovieDto>? Movies { get; set; }
+
+        public List<string> Movieslist {  get; set; }
     }
 }

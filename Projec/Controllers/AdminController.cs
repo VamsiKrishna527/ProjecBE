@@ -40,7 +40,7 @@ namespace Projec.Controllers
             return Ok(new LoginResult
             {
                 Success = true,
-                Message = "You are good",
+                Message = "Login Success",
                 Token = jwtstr
             });
         }
