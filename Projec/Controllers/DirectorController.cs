@@ -12,13 +12,14 @@ namespace Projec.Controllers
     [ApiController]
     public class DirectorController : ControllerBase
     {
-        // GET: api/<DirecController>
-        private readonly MoviesandDirectorsContext _db;
 
+        private readonly MoviesandDirectorsContext _db;
         public DirectorController(MoviesandDirectorsContext db)
         {
             _db = db;
         }
+
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -39,12 +40,6 @@ namespace Projec.Controllers
 
             return Ok(directorDtos);*/
 
-            /* List<Director> directors = await _db.Directors.Include(d => d.Movies).ToListAsync();
-
-             List<string> directorMovieTitles = directors.SelectMany(d => d.Movies.Select(m => m.Title)).ToList();
-
-             return Ok(directorMovieTitles);*/
-
             List<Director> directors = await _db.Directors.Include(d => d.Movies).ToListAsync();
 
             List<DirectorDto> directorDtos = directors.Select(d => new DirectorDto
@@ -59,10 +54,9 @@ namespace Projec.Controllers
         }
 
 
-        // GET api/<DirecController>/5
-        
-        [HttpGet("{directorId}")]
-        public async Task<IActionResult> GetDirectorWithMovies(int directorId)
+        [HttpGet("GetDirectorwithMovies/{directorId}")]
+        [Authorize]
+        public async Task<IActionResult> GetDirectorwithMovies(int directorId)
         {
             Director director = await _db.Directors.Include(d => d.Movies).FirstOrDefaultAsync(d => d.DirectorId == directorId);
 
@@ -73,7 +67,7 @@ namespace Projec.Controllers
 
             List<MovieDto> movieDtos = director.Movies.Select(m => new MovieDto
             {
-                MovieId = m.MovieId,
+               /* MovieId = m.MovieId,*/
                 Title = m.Title,
                 Description = m.Description,
                 ReleaseDate = m.ReleaseDate,
@@ -96,9 +90,8 @@ namespace Projec.Controllers
         }
 
 
-        // POST api/<DirecController>
-        [HttpPost("{directorId}/movies")]
-        [Authorize(Roles = "Admin")]
+        [HttpPost("AddMovieToDirector/{directorId}/movies")]
+        [Authorize]
         public async Task<IActionResult> AddMovieToDirector(int directorId, [FromBody] MovieDto newMovieDto)
         {
             Director director = await _db.Directors.Include(d => d.Movies).FirstOrDefaultAsync(d => d.DirectorId == directorId);
@@ -125,7 +118,6 @@ namespace Projec.Controllers
             // Create a new Movie entity from the MovieDto
             Movie movie = new Movie
             {
-                MovieId = newMovieDto.MovieId,
                 Title = newMovieDto.Title,
                 Description = newMovieDto.Description,
                 ReleaseDate = newMovieDto.ReleaseDate,
@@ -143,7 +135,6 @@ namespace Projec.Controllers
             // Return the updated director information
             List<MovieDto> movieDtos = director.Movies.Select(m => new MovieDto
             {
-                MovieId = m.MovieId,
                 Title = m.Title,
                 Description = m.Description,
                 ReleaseDate = m.ReleaseDate,
@@ -166,8 +157,8 @@ namespace Projec.Controllers
         }
 
 
-        // PUT api/<DirecController>/5
         [HttpPut("UpdateMovieInDirector/{directorId}/{movieTitle}")]
+        [Authorize]
         public async Task<IActionResult> UpdateMovieInDirector(int directorId, string Title, [FromBody] MovieDto updatedMovieDto)
         {
             Director director = await _db.Directors.Include(d => d.Movies).FirstOrDefaultAsync(d => d.DirectorId == directorId);
@@ -177,7 +168,6 @@ namespace Projec.Controllers
                 return NotFound($"Director not found with ID: {directorId}");
             }
 
-            // Find the movie with the specified Name
             Movie movieToUpdate = director.Movies.FirstOrDefault(m => m.Title == Title);
 
             if (movieToUpdate == null)
@@ -185,17 +175,15 @@ namespace Projec.Controllers
                 return NotFound($"Movie not found with Title: {Title} for Director ID: {directorId}");
             }
 
-            // Update the movie details
             movieToUpdate.Title = updatedMovieDto.Title;
             movieToUpdate.ReleaseDate = updatedMovieDto.ReleaseDate;
             movieToUpdate.Budget = updatedMovieDto.Budget;
             movieToUpdate.Collections = updatedMovieDto.Collections;
             movieToUpdate.Genre = updatedMovieDto.Genre;
 
-            // Save changes to the database
+
             await _db.SaveChangesAsync();
 
-            // Return the updated movie information
             MovieDto updatedMovieDtoResponse = new MovieDto
             {
                 Title = movieToUpdate.Title,
@@ -209,8 +197,8 @@ namespace Projec.Controllers
         }
 
 
-        // DELETE api/<DirectorController>/5
         [HttpDelete("DeleteMovieFromDirector/{directorId}/{movieTitle}")]
+        [Authorize]
         public async Task<IActionResult> DeleteMovieFromDirector(int directorId, string Title)
         {
             Director director = await _db.Directors.Include(d => d.Movies).FirstOrDefaultAsync(d => d.DirectorId == directorId);
@@ -220,7 +208,6 @@ namespace Projec.Controllers
                 return NotFound($"Director not found with ID: {directorId}");
             }
 
-            // Find the movie with the specified ID
             Movie movieToDelete = director.Movies.FirstOrDefault(m => m.Title == Title);
 
             if (movieToDelete == null)
@@ -228,13 +215,10 @@ namespace Projec.Controllers
                 return NotFound($"Movie not found with Name: {Title} for Director ID: {directorId}");
             }
 
-            // Remove the movie from the director's list of movies
             director.Movies.Remove(movieToDelete);
 
-            // Save changes to the database
             await _db.SaveChangesAsync();
 
-            // Return a success message or any other relevant information
             return Ok($"Movie with Name: {Title} deleted from Director ID: {directorId}");
         }
 

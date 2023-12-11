@@ -5,3 +5,4 @@ namespace MandD;
 public class MovieUser : IdentityUser
 {
 }
+

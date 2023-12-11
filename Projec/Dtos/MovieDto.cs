@@ -3,8 +3,6 @@ namespace Projec.Dtos
 {
     public class MovieDto
     {
-        public int MovieId { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -17,6 +15,5 @@ namespace Projec.Dtos
 
         public decimal? Collections { get; set; }
 
-        /*public int? DirectorId { get; set; }*/
     }
 }

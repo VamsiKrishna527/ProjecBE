@@ -8,6 +8,7 @@ namespace MandD;
 public partial class Movie
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int MovieId { get; set; }
 
     [Required]
@@ -30,6 +31,7 @@ public partial class Movie
     public decimal? Collections { get; set; }
 
     [ForeignKey("DirectorId")]
+    [Required]
     public int? DirectorId { get; set; }
 
 

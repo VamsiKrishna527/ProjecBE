@@ -19,7 +19,7 @@ public partial class MoviesandDirectorsContext : IdentityDbContext<MovieUser>
 
     public virtual DbSet<Director> Directors { get; set; }
 
-    
+
     public virtual DbSet<Movie> Movies { get; set; }
 
     /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

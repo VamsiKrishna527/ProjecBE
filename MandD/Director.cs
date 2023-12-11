@@ -28,3 +28,4 @@ public partial class Director
     [InverseProperty("Director")]
     public virtual ICollection<Movie> Movies { get; set; } = new List<Movie>();
 }
+
